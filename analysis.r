@@ -41,7 +41,7 @@ hotelling_test_one_population <- function(data, mu) {
 
 # 1.(ii) Run Hotelling’s Test
 
-data_matrix <- as.matrix(dataset[, c("V1", "V2")])
+data_matrix <- as.matrix(treatment_data[, c("V1", "V2")])
 mu0 <- c(5, 5)
 result <- hotelling_test_one_population(data_matrix, mu0)
 
@@ -55,14 +55,14 @@ cat("F-statistic:", round(result$F_stat, 4),
 png(file.path(plots_dir, "1.(iii)_boxplots.png"), width = 1000, height = 450)
 par(mfrow = c(1, 2))
 
-boxplot(V1 ~ Treatment, data = dataset,
+boxplot(V1 ~ Treatment, data = treatment_data,
         main = "V1: Total Cholesterol",
         xlab = "Treatment",
         ylab = "mmol/L",
         col = "lightblue", border = "darkblue", 
         outline = TRUE)
 
-boxplot(V2 ~ Treatment, data = dataset,
+boxplot(V2 ~ Treatment, data = treatment_data,
         main = "V2: Blood Glucose",
         xlab = "Treatment",
         ylab = "mmol/L",
@@ -75,17 +75,17 @@ dev.off()
 # 1.(iv) MANOVA Components
 
 p  <- 2
-g  <- length(unique(dataset$Treatment))
-N  <- nrow(dataset)
+g  <- length(unique(treatment_data$Treatment))
+N  <- nrow(treatment_data)
 
-y_bar <- colMeans(dataset[, 1:2])
+y_bar <- colMeans(treatment_data[, 1:2])
 print(y_bar)
 
 W <- matrix(0, nrow = p, ncol = p)
 B <- matrix(0, nrow = p, ncol = p)
 
-for(tr in unique(dataset$Treatment)) {
-  grp     <- dataset[dataset$Treatment == tr, 1:2]
+for(tr in unique(treatment_data$Treatment)) {
+  grp     <- treatment_data[treatment_data$Treatment == tr, 1:2]
   n_i     <- nrow(grp)
   y_bar_i <- colMeans(grp)
   
@@ -118,7 +118,7 @@ manova_tab <- list(
 )
 print(manova_tab)
 
-manova_model <- manova(cbind(V1, V2) ~ Treatment, data = dataset)
+manova_model <- manova(cbind(V1, V2) ~ Treatment, data = treatment_data)
 summary_manova <- summary(manova_model, test = "Wilks")
 print(summary_manova)
 
@@ -231,7 +231,7 @@ p <- ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster, label = City)) +
   labs(title = "K-means Clusters with City Labels (PCA Projection)",
        x = "Principal Component 1",
        y = "Principal Component 2") +
-  theme_bw(base_size = 14) +  # light theme with white background
+  theme_bw(base_size = 14) +
   theme(
     panel.grid.major = element_line(color = "grey85"),
     panel.grid.minor = element_blank(),
@@ -239,7 +239,7 @@ p <- ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster, label = City)) +
     plot.title = element_text(face = "bold", hjust = 0.5),
     legend.position = "right"
   ) +
-  scale_color_brewer(palette = "Set2")  # softer, lighter color palette
+  scale_color_brewer(palette = "Set2")
 
 ggplot2::ggsave(
   filename = file.path(plots_dir, "2.(ii)_pca_clusters.png"),
