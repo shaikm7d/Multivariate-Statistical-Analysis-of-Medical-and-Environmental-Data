@@ -1,14 +1,8 @@
 # Read the dataset
-
 treatment_data <- read.csv("data_treatment.csv", header = TRUE, stringsAsFactors = FALSE)
 pollution_data <- read.csv("data_pollution.csv", header = TRUE, stringsAsFactors = FALSE)
 
-# Create a dedicated folder to save plots
-plots_dir <- "plots"
-if (!dir.exists(plots_dir)) dir.create(plots_dir)
-
 # 1.(i) Hotelling’s T² Test: One Population
-
 if (!requireNamespace("MASS", quietly = TRUE)) install.packages("MASS")
 library(MASS)
 
@@ -40,7 +34,6 @@ hotelling_test_one_population <- function(data, mu) {
 }
 
 # 1.(ii) Run Hotelling’s Test
-
 data_matrix <- as.matrix(treatment_data[, c("V1", "V2")])
 mu0 <- c(5, 5)
 result <- hotelling_test_one_population(data_matrix, mu0)
@@ -51,8 +44,7 @@ cat("F-statistic:", round(result$F_stat, 4),
     "with df1 =", result$df1, "and df2 =", result$df2, "\n")
 
 # 1.(iii) Boxplots by Treatment
-
-png(file.path(plots_dir, "1.(iii)_boxplots.png"), width = 1000, height = 450)
+png("1.(iii)_boxplots.png", width = 1000, height = 450)
 par(mfrow = c(1, 2))
 
 boxplot(V1 ~ Treatment, data = treatment_data,
@@ -73,7 +65,6 @@ par(mfrow = c(1, 1))
 dev.off()
 
 # 1.(iv) MANOVA Components
-
 p  <- 2
 g  <- length(unique(treatment_data$Treatment))
 N  <- nrow(treatment_data)
@@ -122,8 +113,7 @@ manova_model <- manova(cbind(V1, V2) ~ Treatment, data = treatment_data)
 summary_manova <- summary(manova_model, test = "Wilks")
 print(summary_manova)
 
-#  2.(i) Outlier Capping, Cleaning, and Scaling
-
+# 2.(i) Outlier Capping, Cleaning, and Scaling
 rownames(pollution_data) <- pollution_data[, 1]
 pollution_data <- pollution_data[, -1]
 
@@ -181,11 +171,10 @@ for (col in numeric_cols) {
 }
 
 # 2.(ii) Correlation and Clustering
-
 summary(pollution_data_scaled)
 cor_matrix <- cor(pollution_data_scaled, method = "pearson")
 
-png(file.path(plots_dir, "2.(ii)_corrplot.png"), width = 800, height = 700)
+png("2.(ii)_corrplot.png", width = 800, height = 700)
 library(corrplot)
 corrplot(cor_matrix, 
          method = "color",
@@ -204,7 +193,7 @@ for (k in 1:max_k) {
   wss[k] <- km_model$tot.withinss
 }
 
-png(file.path(plots_dir, "2.(ii)_elbow.png"), width = 800, height = 500)
+png("2.(ii)_elbow.png", width = 800, height = 500)
 plot(1:max_k, wss, type="b",
      xlab="Number of clusters (k)",
      ylab="Total within-cluster sum of squares (SSE)",
@@ -242,7 +231,7 @@ p <- ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster, label = City)) +
   scale_color_brewer(palette = "Set2")
 
 ggplot2::ggsave(
-  filename = file.path(plots_dir, "2.(ii)_pca_clusters.png"),
+  filename = "2.(ii)_pca_clusters.png",
   plot = p,
   width = 9,
   height = 6,
