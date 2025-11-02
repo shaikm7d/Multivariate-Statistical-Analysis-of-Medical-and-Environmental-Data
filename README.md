@@ -1,4 +1,4 @@
-# 🧮 Multivariate Statistical Analysis in R  
+# 🧮 Multivariate Statistical Analysis of Medical and Pollution Data 
 **Author:** Shaik Mohammed
 
 ## 📘 Overview  
@@ -74,6 +74,18 @@ Visualized distributions of:
 
 ### **Part 2:**
 ### **Pollution Dataset Analysis**
+
+Each observation in `data_pollution.csv` represents a **city**, and the variables describe its environmental and meteorological profile:
+
+| Feature | Description |
+|:--------:|:-------------|
+| **y₁** | SO₂ content of air (micrograms per cubic meter) |
+| **y₂** | Average annual temperature (°F) |
+| **y₃** | Number of manufacturing enterprises employing 20+ workers |
+| **y₄** | Population size (1970 census, in thousands) |
+| **y₅** | Average annual wind speed (miles per hour) |
+| **y₆** | Average annual precipitation (inches) |
+| **y₇** | Average number of days with precipitation per year |
 
 #### **Data Preprocessing**
 - Outlier capping using **IQR method**: replaced values beyond `Q1 − 1.5 × IQR` or `Q3 + 1.5 × IQR`.  
