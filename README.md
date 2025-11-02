@@ -43,6 +43,8 @@ Identify meaningful clusters of cities based on environmental variables (SO₂, 
 ---
 
 ### **Boxplot Visualization**
+![Cholesterol & Glucose by Treatment](./1.(iii)_boxplots.png)
+
 Visualized distributions of:
 - **V1 (Total Cholesterol)**  
 - **V2 (Blood Glucose)**  
@@ -80,6 +82,7 @@ Visualized distributions of:
 
 #### **Exploratory Correlation**
 - Computed **Pearson correlation matrix** and visualized via heatmap.
+![Correlation Matrix Heatmap](./2.(ii)_corrplot.png)
 - Observations:  
   - Strong +ve correlation: Manufacturing (`y₃`) ↔ Population (`y₄`) = 0.83.  
   - Moderate +ve: SO₂ ↔ Precipitation days (`y₇`) = 0.49.  
@@ -88,8 +91,10 @@ Visualized distributions of:
 ---
 
 ### **K-Means Clustering**
-- Used **Elbow method** → optimal `k = 3`.  
-- Performed PCA for 2D visualization of clusters.  
+- Used **Elbow method** → optimal `k = 3`.
+![Elbow Method for Choosing k](./2.(ii)_elbow.png)
+- Performed PCA for 2D visualization of clusters.
+![K-means Clusters (PCA Projection)](./2.(ii)_pca_clusters.png)
 - Evaluated mean pollution and climate features per cluster.
 
 #### **Cluster Interpretation**
@@ -100,15 +105,6 @@ Visualized distributions of:
 | **3** | Cleaner, drier cities | Lowest SO₂ (16.0), moderate population, low rainfall. |
 
 **Conclusion:** Industrialization and population density strongly influence pollution levels. Meteorological variables (wind, rain, temperature) modulate these effects.
-
----
-
-## 📊 Visual Outputs
-Generated automatically by the script:
-- **1.(iii)_boxplots.png** - Cholesterol & Glucose by Treatment  
-- **2.(ii)_corrplot.png** - Correlation Matrix Heatmap  
-- **2.(ii)_elbow.png** - Elbow Plot for Optimal k  
-- **2.(ii)_pca_clusters.png** - PCA Visualization of K-means Clusters  
 
 ---
 
