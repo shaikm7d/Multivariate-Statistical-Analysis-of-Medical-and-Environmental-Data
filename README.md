@@ -3,8 +3,8 @@
 
 ## 📘 Overview  
 This project performs a comprehensive **multivariate statistical analysis** in R using two datasets:  
-1. `data_treatment.csv` — a medical dataset for analyzing treatment effects on cholesterol and glucose.  
-2. `data_pollution.csv` — an environmental dataset for clustering cities by pollution and meteorological characteristics.
+1. `data_treatment.csv` - a medical dataset for analyzing treatment effects on cholesterol and glucose.  
+2. `data_pollution.csv` - an environmental dataset for clustering cities by pollution and meteorological characteristics.
 
 It applies **Hotelling’s T² test**, **MANOVA**, and **K-Means clustering** after systematic data cleaning and visualization, providing both inferential and exploratory insights.
 
@@ -12,19 +12,20 @@ It applies **Hotelling’s T² test**, **MANOVA**, and **K-Means clustering** af
 
 ## 🎯 Problem Statement  
 
-### **Part 1 – Medical Dataset (`data_treatment.csv`)**
+### **Part 1 - Medical Dataset (`data_treatment.csv`)**
 Determine whether:
-- The population mean vector of two health indicators (Total Cholesterol, Blood Glucose) equals a specified target vector [5, 5].
+- The population mean vector of two health indicators (Total Cholesterol, Blood Glucose) equals a specified target vector [5, 5] claimed by a researcher.
 - There is a multivariate difference in these indicators across three treatment groups (T1, T2, T3).
 
-### **Part 2 – Pollution Dataset (`data_pollution.csv`)**
+### **Part 2 - Pollution Dataset (`data_pollution.csv`)**
 Identify meaningful clusters of cities based on environmental variables (SO₂, temperature, precipitation, population, etc.) using correlation analysis and K-means clustering.
 
 ---
 
 ## 🧠 Methodology  
 
-### **1️⃣ Hotelling’s One-Sample T² Test**  
+### **Part 1:**
+### **Hotelling’s One-Sample T² Test**
 **Objective:** Test whether the true mean vector equals [5, 5].  
 **Steps:**
 1. Compute sample mean and covariance matrix.  
@@ -41,7 +42,7 @@ Identify meaningful clusters of cities based on environmental variables (SO₂, 
 
 ---
 
-### **2️⃣ Boxplot Visualization**
+### **Boxplot Visualization**
 Visualized distributions of:
 - **V1 (Total Cholesterol)**  
 - **V2 (Blood Glucose)**  
@@ -53,7 +54,7 @@ Visualized distributions of:
 
 ---
 
-### **3️⃣ One-Way MANOVA**
+### **One-Way MANOVA**
 **Goal:** Test whether mean vectors of (V1, V2) differ across treatments.  
 **Test statistic:** Wilks’ Lambda `Λ = |W| / |W + B|`
 
@@ -69,7 +70,8 @@ Visualized distributions of:
 
 ---
 
-### **4️⃣ Pollution Dataset Analysis**
+### **Part 2:**
+### **Pollution Dataset Analysis**
 
 #### **Data Preprocessing**
 - Outlier capping using **IQR method**: replaced values beyond `Q1 − 1.5 × IQR` or `Q3 + 1.5 × IQR`.  
@@ -85,7 +87,7 @@ Visualized distributions of:
 
 ---
 
-### **5️⃣ K-Means Clustering**
+### **K-Means Clustering**
 - Used **Elbow method** → optimal `k = 3`.  
 - Performed PCA for 2D visualization of clusters.  
 - Evaluated mean pollution and climate features per cluster.
@@ -103,10 +105,10 @@ Visualized distributions of:
 
 ## 📊 Visual Outputs
 Generated automatically by the script:
-- **1.(iii)_boxplots.png** — Cholesterol & Glucose by Treatment  
-- **2.(ii)_corrplot.png** — Correlation Matrix Heatmap  
-- **2.(ii)_elbow.png** — Elbow Plot for Optimal k  
-- **2.(ii)_pca_clusters.png** — PCA Visualization of K-means Clusters  
+- **1.(iii)_boxplots.png** - Cholesterol & Glucose by Treatment  
+- **2.(ii)_corrplot.png** - Correlation Matrix Heatmap  
+- **2.(ii)_elbow.png** - Elbow Plot for Optimal k  
+- **2.(ii)_pca_clusters.png** - PCA Visualization of K-means Clusters  
 
 ---
 
