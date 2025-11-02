@@ -28,20 +28,15 @@ Identify meaningful clusters of cities based on environmental variables (SO₂, 
 **Objective:** Test whether the true mean vector equals [5, 5].  
 **Steps:**
 1. Compute sample mean and covariance matrix.  
-2. Calculate  
-   \[
-   T^2 = n (\bar{X} - \mu)' S^{-1} (\bar{X} - \mu)
-   \]  
+2. Calculate `T² = n (X̄ − μ)' S⁻¹ (X̄ − μ)`  
 3. Convert T² to an approximate F-statistic:  
-   \[
-   F = \frac{(n - p)}{p (n - 1)} T^2
-   \]  
-   where \(p\) = number of variables, \(n\) = sample size.  
+   `F = ((n - p) / (p * (n - 1))) * T²`  
+   where `p` = number of variables, `n` = sample size.  
 4. Obtain p-value from the F-distribution.
 
 **Result Summary:**  
-- \( T^2 = 76.9971 \), \( F = 37.171 \), df₁ = 2, df₂ = 28  
-- \( p = 1.317×10^{-8} \)  
+- `T² = 76.9971`, `F = 37.171`, `df₁ = 2`, `df₂ = 28`  
+- `p = 1.317×10⁻⁸`  
 ✅ **Reject H₀** → The true mean vector ≠ [5, 5].  
 
 ---
@@ -60,14 +55,14 @@ Visualized distributions of:
 
 ### **3️⃣ One-Way MANOVA**
 **Goal:** Test whether mean vectors of (V1, V2) differ across treatments.  
-**Test statistic:** Wilks’ Lambda \( \Lambda = \frac{|W|}{|W + B|} \)
+**Test statistic:** Wilks’ Lambda `Λ = |W| / |W + B|`
 
 **Computation results:**  
-- \( W = \begin{bmatrix} 32.741 & 4.592 \\ 4.592 & 22.569 \end{bmatrix} \)  
-- \( B = \begin{bmatrix} 37.948 & 13.784 \\ 13.784 & 19.465 \end{bmatrix} \)  
-- \( \Lambda = 0.2725 \)  
-- \( F = 11.901, \; df_1 = 4, \; df_2 = 52 \)  
-- \( p = 6.15×10^{-7} \)
+- `W = [[32.741, 4.592], [4.592, 22.569]]`  
+- `B = [[37.948, 13.784], [13.784, 19.465]]`  
+- `Λ = 0.2725`  
+- `F = 11.901`, `df₁ = 4`, `df₂ = 52`  
+- `p = 6.15×10⁻⁷`
 
 ✅ **Reject H₀** → There is a significant multivariate difference between treatment means.  
 **Conclusion:** The treatments significantly affect cholesterol and glucose jointly.
@@ -77,21 +72,21 @@ Visualized distributions of:
 ### **4️⃣ Pollution Dataset Analysis**
 
 #### **Data Preprocessing**
-- Outlier capping using **IQR method**: replaced values beyond Q1 − 1.5 × IQR or Q3 + 1.5 × IQR.  
+- Outlier capping using **IQR method**: replaced values beyond `Q1 − 1.5 × IQR` or `Q3 + 1.5 × IQR`.  
 - Imputed missing values with **median** (robust to outliers).  
-- Standardized all numeric variables (mean = 0, SD = 1) for fair distance-based clustering.
+- Standardized all numeric variables (`mean = 0`, `SD = 1`) for fair distance-based clustering.
 
 #### **Exploratory Correlation**
 - Computed **Pearson correlation matrix** and visualized via heatmap.
 - Observations:  
-  - Strong +ve correlation: Manufacturing (y₃) ↔ Population (y₄) = 0.83.  
-  - Moderate +ve: SO₂ ↔ Precipitation days (y₇) = 0.49.  
-  - Moderate −ve: Temperature (y₂) ↔ SO₂ (y₁) = −0.42.  
+  - Strong +ve correlation: Manufacturing (`y₃`) ↔ Population (`y₄`) = 0.83.  
+  - Moderate +ve: SO₂ ↔ Precipitation days (`y₇`) = 0.49.  
+  - Moderate −ve: Temperature (`y₂`) ↔ SO₂ (`y₁`) = −0.42.  
 
 ---
 
 ### **5️⃣ K-Means Clustering**
-- Used **Elbow method** → optimal k = 3.  
+- Used **Elbow method** → optimal `k = 3`.  
 - Performed PCA for 2D visualization of clusters.  
 - Evaluated mean pollution and climate features per cluster.
 
@@ -129,6 +124,6 @@ Generated automatically by the script:
 ## 📈 Key Findings
 | Analysis | Result Summary | Inference |
 |-----------|----------------|------------|
-| **Hotelling’s T² Test** | p ≈ 1.3e−8 | Significant deviation from [5, 5] mean vector |
-| **MANOVA** | Wilks’ Λ = 0.2725, F = 11.90, p ≈ 6.15e−7 | Treatment effect significant |
-| **Clustering** | k = 3 optimal; clusters clearly separated | Industrialization drives SO₂ variation |
+| **Hotelling’s T² Test** | `p ≈ 1.3e−8` | Significant deviation from [5, 5] mean vector |
+| **MANOVA** | `Λ = 0.2725`, `F = 11.90`, `p ≈ 6.15e−7` | Treatment effect significant |
+| **Clustering** | `k = 3` optimal; clusters clearly separated | Industrialization drives SO₂ variation |
