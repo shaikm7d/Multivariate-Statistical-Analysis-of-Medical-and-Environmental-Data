@@ -6,7 +6,7 @@ This project performs a comprehensive **multivariate statistical analysis** in R
 1. `data_treatment.csv` - a medical dataset for analyzing treatment effects on cholesterol and glucose.  
 2. `data_pollution.csv` - an environmental dataset for clustering cities by pollution and meteorological characteristics.
 
-It applies **Hotelling’s T² test**, **MANOVA**, and **K-Means clustering** after systematic data cleaning and visualization, providing both inferential and exploratory insights.
+It applies **Hotelling’s T² test**, **MANOVA**, and **K-Means clustering** after systematic data cleaning and visualization, providing both inferential and exploratory insights. All the steps are implemented in the `analysis.R` file, which serves as the main working script for the project.
 
 ---
 
