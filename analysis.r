@@ -1,3 +1,9 @@
+# Set up the working directory
+setwd("C:/Users/shaik/Desktop/Projects/Multivariate Statistical Analysis of Medical and Pollution Data")
+
+# Set the output directory
+output_dir <- getwd()
+
 # Read the dataset
 treatment_data <- read.csv("data_treatment.csv", header = TRUE, stringsAsFactors = FALSE)
 pollution_data <- read.csv("data_pollution.csv", header = TRUE, stringsAsFactors = FALSE)
@@ -240,3 +246,4 @@ ggplot2::ggsave(
 )
 
 aggregate(pollution_data_capped[, 1:7], by = list(final_kmeans$cluster), FUN = mean)
+
